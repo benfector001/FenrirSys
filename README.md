@@ -47,7 +47,8 @@ O FenrirSys exibe as seguintes informações do seu sistema Linux:
 
 - Um compilador de C++ (g++ recomendado)
 - Sistema Linux
-
+- Pacote lsb_release (caso não esteja baixado)
+  
 ## 🛠️ Instalação e Compilação
 
 ### 📥 Baixar o projeto
