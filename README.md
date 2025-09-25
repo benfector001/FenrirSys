@@ -6,7 +6,6 @@ Sys ➔ **System**
 ![FenrirSys](https://img.shields.io/badge/FenrirSys-System_Info_Tool-blue?style=for-the-badge)
 ![Linux](https://img.shields.io/badge/Linux-Supported-brightgreen?style=for-the-badge)
 ![Debian](https://img.shields.io/badge/Debian-Supported-A81D33?style=for-the-badge&logo=debian&logoColor=white)
-![Arch Linux](https://img.shields.io/badge/Arch_Linux-Supported-1793D1?style=for-the-badge&logo=arch-linux)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
 FenrirSys é um programa simples e elegante que exibe informações do sistema Linux no terminal, inspirado no estilo do neofetch.
