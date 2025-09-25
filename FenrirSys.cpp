@@ -10,14 +10,19 @@
 #include <vector>
 
 std::string executar_comando(const std::string& comando) {
+    // roda o comando e captura a saída
     std::array<char, 128> buffer;
     std::string resultado;
     FILE* pipe = popen(comando.c_str(), "r");
     if (!pipe) return "Erro ao executar o comando!!";
+    
+    // Lê a saída do comando linha por linha
     while (fgets(buffer.data(), buffer.size(), pipe) != nullptr) {
         resultado += buffer.data();
     }
     pclose(pipe);
+
+    // Remove o \n do final se existir
     if (!resultado.empty() && resultado.back() == '\n') {
         resultado.pop_back();
     }
@@ -27,6 +32,7 @@ std::string executar_comando(const std::string& comando) {
 std::string info_cpu(const std::string& key) {
     std::ifstream cpuinfo("/proc/cpuinfo");
     std::string linha;
+    
     while (std::getline(cpuinfo, linha)) {
         if (linha.find(key) != std::string::npos) {
             size_t pos = linha.find(":");
@@ -42,8 +48,10 @@ std::string info_memoria() {
     std::ifstream meminfo("/proc/meminfo");
     std::string linha;
     std::getline(meminfo, linha);
+    
     double memoria_kb = std::stod(linha.substr(linha.find(":") + 2));
     double memoria_gb = memoria_kb / (1024 * 1024);
+    
     std::ostringstream oss;
     oss << std::fixed << std::setprecision(1) << memoria_gb << " GB";
     return oss.str();
@@ -139,6 +147,7 @@ int main() {
     infos.push_back("\t\tTerminal: " + executar_comando("echo $TERM"));
     infos.push_back("\t\tIP Privado: " + executar_comando("ip -4 addr show $(ip route | grep default | awk '{print $5}') | grep inet | awk '{print $2}' | cut -d/ -f1"));
 
+    // lobo + info, lado a lado
     size_t maxLines = std::max(lobo.size(), infos.size());
 
     for (size_t i = 0; i < maxLines; i++) {
